@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Vikrant on 15-12-2018.
@@ -42,9 +44,17 @@ public class AdminLogin {
 
         JPanel p3= new JPanel();
         JButton login = new JButton("LOGIN");
-        JButton back = new JButton("BACK");
+        JButton exit = new JButton("EXIT");
         p3.add(login);
-        p3.add(back);
+        p3.add(exit);
+
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
 
         JPanel p4= new JPanel();
         p4.add(p1);
