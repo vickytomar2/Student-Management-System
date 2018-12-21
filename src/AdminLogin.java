@@ -4,13 +4,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Vikrant on 15-12-2018.
- */
-public class AdminLogin {
-    public static void main(String[] args) {
 
-        JFrame frame= new JFrame("Admin Login");
+public class AdminLogin {
+
+    JFrame frame;
+
+    AdminLogin(){
+
+        frame= new JFrame("Admin Login");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
         int width = screenSize.width;
@@ -48,6 +49,35 @@ public class AdminLogin {
         p3.add(login);
         p3.add(exit);
 
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (nameField.getText().equals("Admin") && passwordField.getText().equals("admin123")){
+                    frame.dispose();
+
+                    new AdminSection();
+                }else{
+
+                    JDialog dialog= new JDialog();
+                    dialog.setSize(300,200);
+                    dialog.setLayout(new GridBagLayout());
+                    JLabel text= new JLabel("Invalid Username or Password");
+                    JButton b= new JButton("TRY AGAIN");
+
+                    b.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            dialog.setVisible(false);
+                        }
+                    });
+
+                    dialog.add(text);
+                    dialog.add(b);
+                    dialog.setVisible(true);
+                }
+            }
+        });
+
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,12 +103,12 @@ public class AdminLogin {
         groupLayout.setHorizontalGroup(
                 groupLayout.createSequentialGroup()
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(p1)
-                        .addComponent(namePanel)
-                        .addComponent(passPanel)
-                        .addComponent(p3)));
+                                .addComponent(p1)
+                                .addComponent(namePanel)
+                                .addComponent(passPanel)
+                                .addComponent(p3)));
         groupLayout.setVerticalGroup(
-                 groupLayout.createSequentialGroup()
+                groupLayout.createSequentialGroup()
                         .addComponent(p1)
                         .addComponent(namePanel)
                         .addComponent(passPanel)
@@ -90,6 +120,11 @@ public class AdminLogin {
 //        frame.add(namePanel);
 //        frame.add(passPanel);
         frame.setVisible(true);
+
+    }
+
+    public static void main(String[] args) {
+        new AdminLogin();
 
     }
 }

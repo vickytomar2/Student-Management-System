@@ -9,7 +9,7 @@ class databaseDemo {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            System.out.println("Connecting to database...");
+           // System.out.println("Connecting to database...");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/TEACHER", "root", "Vikrant@2");
 
 //            System.out.println("Creating database...");

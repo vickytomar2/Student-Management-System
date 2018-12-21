@@ -1,13 +1,17 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Vikrant on 16-12-2018.
  */
 public class AdminSection {
-    public static void main(String[] args) {
-        JFrame frame= new JFrame("Admin Login");
+    JFrame frame;
+
+    AdminSection(){
+        frame = new JFrame("Admin Login");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
         int width = screenSize.width;
@@ -28,20 +32,40 @@ public class AdminSection {
         p3.setBorder(new EmptyBorder(5,5,5,5));
         p3.add(addTeacher);
 
+        addTeacher.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new addTeacher();
+            }
+        });
+
         JButton viewTeacher = new JButton("View Teacher details");
         JPanel p4= new JPanel();
         p4.setBorder(new EmptyBorder(5,5,5,5));
         p4.add(viewTeacher);
 
-//        JButton updateTeacher= new JButton("Update Teacher details");
-//        JPanel p5= new JPanel();
-//        p5.setBorder(new EmptyBorder(5,5,5,5));
-//        p5.add(updateTeacher);
+        viewTeacher.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ViewTeacher();
+            }
+        });
+
 
         JButton logout= new JButton("Logout");
         JPanel p6= new JPanel();
         p6.setBorder(new EmptyBorder(5,5,5,5));
         p6.add(logout);
+
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new AdminLogin();
+            }
+        });
 
         JPanel p1= new JPanel();
         p1.add(p2);
@@ -49,8 +73,6 @@ public class AdminSection {
         p1.add(p4);
         //p1.add(p5);
         p1.add(p6);
-
-        //addTeacher.setSize(new Dimension(p1.getWidth(),p1.getHeight()));
 
         Container myPanel = frame.getContentPane();
         myPanel.setLayout(new GridBagLayout());
@@ -62,7 +84,7 @@ public class AdminSection {
 
         gl.setHorizontalGroup(
                 gl.createSequentialGroup().addGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(p2).addComponent(p3).addComponent(p4).addComponent(p6))
+                        .addComponent(p2).addComponent(p3).addComponent(p4).addComponent(p6))
         );
 
         gl.setVerticalGroup(
@@ -72,5 +94,8 @@ public class AdminSection {
 
         frame.add(p1);
         frame.setVisible(true);
+    }
+    public static void main(String[] args) {
+        new AdminSection();
     }
 }
